@@ -51,7 +51,8 @@ sleep 3
 
 # create file systems
 mkfs.vfat "${BOOTP}" -n HypriotOS
-mkfs.ext4 "${ROOTP}" -L root -i 4096 # create 1 inode per 4kByte block (maximum ratio is 1 per 1kByte)
+mkfs.btrfs "${ROOTP}" -L root 
+#mkfs.ext4 "${ROOTP}" -L root -i 4096 # create 1 inode per 4kByte block (maximum ratio is 1 per 1kByte)
 
 echo "### remove dev mapper devices for image partitions"
 kpartx -vds ${IMAGE_PATH} || true
